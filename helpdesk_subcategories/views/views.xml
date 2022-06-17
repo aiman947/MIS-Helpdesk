@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <record id="helpdesk_ticket_subtype_action" model="ir.actions.act_window">
+            <field name="name">SubTypes</field>
+            <field name="res_model">helpdesk.ticket.subtype</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No subtypes found. Let's create one!
+                </p>
+                <p>
+                    Types are perfect for categorizing your tickets.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="helpdesk_ticket_subtype_menu" action="helpdesk_ticket_subtype_action"
+                  sequence="1" parent="helpdesk.helpdesk_ticket_type_menu"/>
+
+
+        <record id="helpdesk_ticket_subtype_view_tree" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.subtype.tree</field>
+            <field name="model">helpdesk.ticket.subtype</field>
+            <field name="arch" type="xml">
+                <tree string="Subtypes" sample="1">
+                    <field name="sequence" widget="handle" groups="base.group_no_one"/>
+                    <field name="name"/>
+                    <field name="type_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_subtype_view_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.subtype.form</field>
+            <field name="model">helpdesk.ticket.subtype</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="type_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="helpdesk_form_extend" model="ir.ui.view">
+            <field name="name">helpdesk.form.extend</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group/field[@name='ticket_type_id']" position="after">
+                    <field name="subtype_id"/>
+                    <field name="item_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

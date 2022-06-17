@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_subtypes,helpdesk.subtypes,helpdesk_subcategories.model_helpdesk_ticket_subtype,,1,1,1,1
+access_helpdesk_item,helpdesk.items,helpdesk_subcategories.model_helpdesk_ticket_item,,1,1,1,1

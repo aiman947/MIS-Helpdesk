@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="helpdesk_ticket_item_action" model="ir.actions.act_window">
+            <field name="name">Items</field>
+            <field name="res_model">helpdesk.ticket.item</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No subtypes found. Let's create one!
+                </p>
+                <p>
+                    Types are perfect for categorizing your tickets.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="helpdesk_ticket_item_menu" action="helpdesk_ticket_item_action"
+                  sequence="1" parent="helpdesk.helpdesk_ticket_type_menu"/>
+
+
+        <record id="helpdesk_ticket_item_view_tree" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.item.tree</field>
+            <field name="model">helpdesk.ticket.item</field>
+            <field name="arch" type="xml">
+                <tree string="Items" sample="1">
+                    <field name="sequence" widget="handle" groups="base.group_no_one"/>
+                    <field name="name"/>
+                    <field name="subtype_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_item_view_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.item.form</field>
+            <field name="model">helpdesk.ticket.item</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="subtype_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>
