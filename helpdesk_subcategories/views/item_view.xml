@@ -16,7 +16,7 @@
 
 
         <menuitem id="helpdesk_ticket_item_menu" action="helpdesk_ticket_item_action"
-                  sequence="1" parent="helpdesk.helpdesk_ticket_type_menu"/>
+                  sequence="1" parent="helpdesk.helpdesk_menu_config"/>
 
 
         <record id="helpdesk_ticket_item_view_tree" model="ir.ui.view">
