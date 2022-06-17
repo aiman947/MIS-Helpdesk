@@ -9,8 +9,8 @@ class HelpdeskTicketTypeExtend(models.Model):
     # parent_id = fields.Many2one('helpdesk.ticket.type', 'Parent', index=True, ondelete='cascade')
     # parent_path = fields.Char(index=True)
     # child_id = fields.One2many('helpdesk.ticket.type', 'parent_id', 'Child')
-    subtype_id = fields.Many2one('helpdesk.ticket.subtype',string='Subtype', required=True, domain=[('type_id', '=', 'ticket_type_id')])
-    item_id = fields.Many2one('helpdesk.ticket.item',string='Item', required=True, domain=lambda self: [('subtype_id', '=', self.subtype_id.id)])
+    subtype_id = fields.Many2one('helpdesk.ticket.subtype',string='Subtype', domain=[('type_id', '=', 'ticket_type_id')], ondelete='cascade')
+    item_id = fields.Many2one('helpdesk.ticket.item',string='Item', domain=lambda self: [('subtype_id', '=', self.subtype_id.id)], ondelete='cascade')
 
     @api.onchange('ticket_type_id')
     def _onchange_ticket_type_id(self):
@@ -22,6 +22,7 @@ class HelpdeskTicketTypeExtend(models.Model):
 
 class HelpdeskSubtype(models.Model):
     _name = 'helpdesk.ticket.subtype'
+    _description = ''
 
     sequence = fields.Integer(default=10)
     name = fields.Char('name', required=True)
@@ -30,7 +31,8 @@ class HelpdeskSubtype(models.Model):
 
 class HelpdeskSubitem(models.Model):
     _name = 'helpdesk.ticket.item'
-
+    _description = ''
+    
     sequence = fields.Integer(default=10)
     name = fields.Char('name', required=True)
     subtype_id = fields.Many2one('helpdesk.ticket.subtype',string='Subtype', required=True)
